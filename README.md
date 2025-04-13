@@ -1,153 +1,151 @@
 # DouYin Downloader
 
-DouYin Downloader 是一个用于批量下载抖音内容的工具。基于抖音 API 实现，支持命令行参数或 YAML 配置文件方式运行，可满足大部分抖音内容的下载需求。
+**DouYin Downloader** is a tool for batch downloading content from Douyin. It is based on the Douyin API and supports operation via command-line parameters or YAML configuration files, meeting most download needs for Douyin content.
 
-## ✨ 特性
+## ✨ Features
 
-- **多种内容支持**
-  - 视频、图集、音乐、直播信息下载
-  - 支持个人主页、作品分享、直播、合集、音乐集合等多种链接
-  - 支持去水印下载
-  
-- **批量下载能力**
-  - 多线程并发下载
-  - 支持多链接批量下载
-  - 自动跳过已下载内容
-  
-- **灵活配置**
-  - 支持命令行参数和配置文件两种方式
-  - 可自定义下载路径、线程数等
-  - 支持下载数量限制
-  
-- **增量更新**
-  - 支持主页作品增量更新
-  - 支持数据持久化到数据库
-  - 可根据时间范围过滤
+- **Supports Multiple Content Types**
+  - Download videos, photo collections, music, and live stream information
+  - Supports links from personal profiles, shared posts, live streams, collections, and music pages
+  - Supports downloading without watermarks
 
-## 🚀 快速开始
+- **Batch Download Capability**
+  - Multi-threaded concurrent downloads
+  - Supports batch downloads via multiple links
+  - Automatically skips already downloaded content
 
-### 安装
+- **Flexible Configuration**
+  - Supports both command-line parameters and configuration files
+  - Customizable download path, number of threads, etc.
+  - Supports limiting the number of downloads
 
-1. 安装 Python 依赖：
-```bash
-pip install -r requirements.txt
-```
+- **Incremental Updates**
+  - Supports incremental updates of homepage content
+  - Supports persisting data to a database
+  - Allows filtering by time range
 
-2. 复制配置文件：
-```bash
-cp config.example.yml config.yml
-```
+## 🚀 Getting Started
 
-### 配置
+### Installation
 
-编辑 `config.yml` 文件，设置：
-- 下载链接
-- 保存路径
-- Cookie 信息（从浏览器开发者工具获取）
-- 其他下载选项
+1. Install Python dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### 运行
+2. Copy the config file:
+    ```bash
+    cp config.example.yml config.yml
+    ```
 
-**方式一：使用配置文件（推荐）**
+### Configuration
+
+Edit the `config.yml` file and set:
+- Download links
+- Save path
+- Cookie information (retrieved from browser developer tools)
+- Other download options
+
+### Run
+
+**Method 1: Using the config file (recommended)**
 ```bash
 python DouYinCommand.py
 ```
 
-**方式二：使用命令行**
+**Method 2: Using command line**
 ```bash
-python DouYinCommand.py -C True -l "抖音分享链接" -p "下载路径"
+python DouYinCommand.py -C True -l "Douyin share link" -p "download path"
 ```
 
-## 使用交流群
+## User Group
 
 ![fuye](img/fuye.png)
 
-## 使用截图
+## Screenshots
 
-![DouYinCommand1](img/DouYinCommand1.png)
-![DouYinCommand2](img/DouYinCommand2.png)
-![DouYinCommand download](img/DouYinCommanddownload.jpg)
+![DouYinCommand1](img/DouYinCommand1.png)  
+![DouYinCommand2](img/DouYinCommand2.png)  
+![DouYinCommand download](img/DouYinCommanddownload.jpg)  
 ![DouYinCommand download detail](img/DouYinCommanddownloaddetail.jpg)
 
-## 📝 支持的链接类型
+## 📝 Supported Link Types
 
-- 作品分享链接：`https://v.douyin.com/xxx/`
-- 个人主页：`https://www.douyin.com/user/xxx`
-- 单个视频：`https://www.douyin.com/video/xxx`
-- 图集：`https://www.douyin.com/note/xxx`
-- 合集：`https://www.douyin.com/collection/xxx`
-- 音乐原声：`https://www.douyin.com/music/xxx`
-- 直播：`https://live.douyin.com/xxx`
+- Shared post: `https://v.douyin.com/xxx/`
+- User profile: `https://www.douyin.com/user/xxx`
+- Single video: `https://www.douyin.com/video/xxx`
+- Photo collection: `https://www.douyin.com/note/xxx`
+- Collection: `https://www.douyin.com/collection/xxx`
+- Music: `https://www.douyin.com/music/xxx`
+- Live stream: `https://live.douyin.com/xxx`
 
-## 🛠️ 高级用法
+## 🛠️ Advanced Usage
 
-### 命令行参数
+### Command Line Parameters
 
-基础参数：
+Basic parameters:
 ```
--C, --cmd            使用命令行模式
--l, --link          下载链接
--p, --path          保存路径
--t, --thread        线程数（默认5）
-```
-
-下载选项：
-```
--m, --music         下载音乐（默认True）
--c, --cover         下载封面（默认True）
--a, --avatar        下载头像（默认True）
--j, --json          保存JSON数据（默认True）
+-C, --cmd            Use command line mode
+-l, --link           Download link
+-p, --path           Save path
+-t, --thread         Number of threads (default 5)
 ```
 
-更多参数说明请使用 `-h` 查看帮助信息。
-
-### 示例命令
-
-1. 下载单个视频：
-```bash
-python DouYinCommand.py -C True -l "https://v.douyin.com/xxx/"
+Download options:
+```
+-m, --music          Download music (default True)
+-c, --cover          Download cover (default True)
+-a, --avatar         Download avatar (default True)
+-j, --json           Save JSON data (default True)
 ```
 
-2. 下载主页作品：
-```bash
-python DouYinCommand.py -C True -l "https://v.douyin.com/xxx/" -M post
-```
+Use `-h` to see more parameter options.
 
-3. 批量下载：
-```bash
-python DouYinCommand.py -C True -l "链接1" -l "链接2" -p "./downloads"
-```
+### Example Commands
 
-更多示例请参考[使用示例文档](docs/examples.md)。
+1. Download a single video:
+    ```bash
+    python DouYinCommand.py -C True -l "https://v.douyin.com/xxx/"
+    ```
 
-## 📋 注意事项
+2. Download user profile posts:
+    ```bash
+    python DouYinCommand.py -C True -l "https://v.douyin.com/xxx/" -M post
+    ```
 
-1. 本项目仅供学习交流使用
-2. 使用前请确保已安装所需依赖
-3. Cookie 信息需要自行获取
-4. 建议适当调整线程数，避免请求过于频繁
+3. Batch download:
+    ```bash
+    python DouYinCommand.py -C True -l "link1" -l "link2" -p "./downloads"
+    ```
 
-## 🤝 贡献
+For more examples, refer to the [Usage Examples Documentation](docs/examples.md).
 
-欢迎提交 Issue 和 Pull Request。
+## 📋 Notes
 
-## 📜 许可证
+1. This project is for learning and communication purposes only.
+2. Ensure all required dependencies are installed before use.
+3. Cookie information must be obtained manually.
+4. Adjust thread count as needed to avoid excessive requests.
 
-本项目采用 [MIT](LICENSE) 许可证。
+## 🤝 Contributions
 
-## 🙏 鸣谢
+Issues and pull requests are welcome.
+
+## 📜 License
+
+This project is licensed under the [MIT](LICENSE) License.
+
+## 🙏 Acknowledgements
 
 - [TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)
-- 本项目使用了 ChatGPT 辅助开发，如有问题请提 Issue
+- This project was assisted by ChatGPT. If you encounter any issues, please open an issue.
 
 ## 📊 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=jiji262/douyin-downloader&type=Date)](https://star-history.com/#jiji262/douyin-downloader&Date)
 
-
-
+---
 
 # License
 
-[MIT](https://opensource.org/licenses/MIT) 
-
+[MIT](https://opensource.org/licenses/MIT)
